@@ -8,9 +8,13 @@ erDiagram
         pin char(6)
         phone_number string
         photo string
-        balance decimal
         created_at timestamp
         updated_at timestamp
+    }
+    Wallets {
+        id int PK
+        user_id int FK
+        balance decimal
     }
     Transactions {
         id int PK
@@ -44,8 +48,9 @@ erDiagram
         created_at timestamp
     }
 
+    Users ||--o| Wallets : have
     Users ||--o{ Transactions : make
-    Users ||--o{ Transfer_Details : receive
+    Users  ||--o{ Transfer_Details : receive
     Payment_Methods ||--o{ Topup_Details : "used in"
     Transactions ||--o| Topup_Details : has
     Transactions ||--o| Transfer_Details : has
