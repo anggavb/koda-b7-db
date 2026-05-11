@@ -149,6 +149,7 @@ UNION ALL
     WHERE u.id = 1
     AND t.type = 'transfer'
 )
+WHERE created_at BETWEEN '2026-05-10' AND '2026-05-11'
 ORDER BY created_at DESC;
 
 -- Get user account information (balance, income, expense)
@@ -182,12 +183,9 @@ JOIN wallets w ON u.id = w.user_id
 WHERE u.id = 1;
 
 -- Find receiver with pagination
-SELECT u.fullname AS "receiver"
-FROM users u
-JOIN transactions t ON u.id = t.user_id
-JOIN transfer_details td ON t.id = td.transaction_id
-WHERE td.recipient_user_id != 1
-AND u.id = 1
+SELECT photo, fullname AS "receiver", phone_number
+FROM users
+WHERE id != 1
 LIMIT 10
 OFFSET 0;
 
