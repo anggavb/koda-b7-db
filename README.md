@@ -11,6 +11,20 @@ erDiagram
         created_at timestamp
         updated_at timestamp
     }
+    UserOauths {
+        id int PK
+        user_id int FK
+        provider string "google, facebook"
+        access_token string
+        refresh_token string
+        expires_at date
+    }
+    UserRatings {
+        id int PK
+        user_id int FK
+        comments string
+        rate decimal "1-5"
+    }
     Wallets {
         id int PK
         user_id int FK
@@ -48,6 +62,8 @@ erDiagram
         created_at timestamp
     }
 
+    Users ||--o{ UserOauths : have
+    Users ||--o| UserRatings : "rate & comment"
     Users ||--o| Wallets : have
     Users ||--o{ Transactions : make
     Users  ||--o{ Transfer_Details : receive
