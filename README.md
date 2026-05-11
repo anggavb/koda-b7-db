@@ -8,6 +8,7 @@ erDiagram
         pin char(6)
         phone_number string
         photo string
+        is_verified boolean
         created_at timestamp
         updated_at timestamp
     }

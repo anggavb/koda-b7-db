@@ -9,6 +9,7 @@ CREATE TABLE users (
     pin CHAR(6),
     phone_number VARCHAR(13),
     photo VARCHAR(255),
+    is_verified BOOLEAN DEFAULT FALSE NOT NULL,
     created_at TIMESTAMP DEFAULT NOW() NOT NULL,
     updated_at TIMESTAMP
 );
