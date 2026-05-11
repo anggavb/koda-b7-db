@@ -124,6 +124,7 @@ UNION ALL
 );
 
 -- Get user history with option (income/expense, date range)
+SELECT * FROM
 (
     SELECT
         t.type,
@@ -134,9 +135,7 @@ UNION ALL
         ON t.user_id = u.id
     WHERE u.id = 1
     AND (t.type = 'top-up' OR t.type = 'transfer')
-)
-UNION ALL
-(
+UNION
     SELECT
         'receive' AS type,
         t.amount,
@@ -150,6 +149,8 @@ UNION ALL
     AND t.type = 'transfer'
 )
 WHERE created_at BETWEEN '2026-05-10' AND '2026-05-11'
+AND type IN ('top-up', 'receive') -- income
+-- AND type IN ('transfer') -- expense
 ORDER BY created_at DESC;
 
 -- Get user account information (balance, income, expense)
